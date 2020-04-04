@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+<!-- for card like view -->
+{% block css_files %}
+<link href="{% static 'events/css/card-appearance.css' %}" rel="stylesheet">
+<script src="{% static 'events/js/events.js' %}"></script>
+{% endblock css_files %}
+{% block content %}
+{% include "navbar.html" %}
+
+  <div class='header'></div>
+  <div class='showcase'></div>
+  <div class='card-container'>
+
+  {% for item in event_list %}
+<!--     <div class="col-md-3 col-sm-6 col-xs-12">
+ -->            <button class='material-card'>
+                {% if item.picture %}
+                    <img class='banner-image center-block' alt='placeholder' src='{{ item.picture.url }}'>
+                {% endif %}
+                
+                <section class='title-text'>
+                    <h3><a href='{% url "events_home" %}'>
+                            {{ item.title }}</h3>
+                    <span class="glyphicon glyphicon-map-marker">{{ item.location }}</span>
+                    <br>
+                    <span class="glyphicon glyphicon-calendar">{{ item.starts }}</span><br>
+                    <a class="description">
+                        Action
+                    </a>
+                </section>
+            </button>
+<!--         </div>
+ -->    {% endfor %}
+    </div>
+{% include "footer.html" %}
+{% endblock content %}
